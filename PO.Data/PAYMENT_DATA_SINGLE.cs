@@ -20,7 +20,7 @@ namespace PO.Data
         public System.DateTime DATE { get; set; }
         public string ADDON_TEXT { get; set; }
         public Nullable<int> PAYMENT_GROUP_ID { get; set; }
-        public int PAYMENT_TYPE_ID { get; set; }
+        public Nullable<int> PAYMENT_TYPE_ID { get; set; }
         public Nullable<System.DateTime> INSERT_AT { get; set; }
         public string INSERT_BY { get; set; }
     

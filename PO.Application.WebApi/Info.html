@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    http://localhost:11112/api/Payment/GetAllPaymentSingle<br />
+    [Route("GetAllPaymentSingle")]<br />
+    [HttpPost]<br />
+    public IHttpActionResult GetPayment()<br />
+    <br />
+    <br />
+    http://localhost:11112/api/Payment/GetAllPaymentSingle?Description=''&Price=0&PaymentType=0&AddonText=''&PaymentGroup=0<br />
+    [Route("AddPaymentSingle")]<br />
+    [HttpPost]<br />
+    public IHttpActionResult AddPayment(string Description, decimal Price, int PaymentType, string AddonText, int PaymentGroup)<br />
+
+</body>
+</html>

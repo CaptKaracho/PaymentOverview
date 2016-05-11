@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLBase.cs" />
+    <Compile Include="BLEntties\PaymentData.cs" />
     <Compile Include="BLEntties\UserData.cs" />
     <Compile Include="BLPayment.cs" />
     <Compile Include="BLUser.cs" />

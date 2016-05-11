@@ -11,6 +11,9 @@ namespace PO.BL
     public class BLPayment : BLBase
     {
         public UserData ApplicationUser { get; set; }
+        private bool _InstantSave { get; set; }
+
+        #region Constructor
 
         public BLPayment() : base()
         {
@@ -28,30 +31,32 @@ namespace PO.BL
             this.ApplicationUser = ApplicationUser;
         }
 
-        private bool _InstantSave { get; set; }
+        #endregion
 
-        public List<PAYMENT_DATA_SINGLE> AddPaymentDataSingle(List<PAYMENT_DATA_SINGLE> DataList)
+        #region Add
+
+        public List<PaymentDataSingle> AddPaymentDataSingle(List<PaymentDataSingle> DataList)
         {
-            List<PAYMENT_DATA_SINGLE> _ReturnList = new List<PAYMENT_DATA_SINGLE>();
+            List<PaymentDataSingle> _ReturnList = new List<PaymentDataSingle>();
             _InstantSave = false;
             DataList.ForEach(f =>
             {
-                _ReturnList.Add(AddPaymentDataSingle(f.DESCRIPTION, f.PRICE, f.PAYMENT_TYPE_ID, f.DATE, f.ADDON_TEXT, (int)f.PAYMENT_GROUP_ID));
+                _ReturnList.Add(AddPaymentDataSingle(f));
             });
             RepContext.SaveChanges();
             return _ReturnList;
         }
 
-        public PAYMENT_DATA_SINGLE AddPaymentDataSingle(PAYMENT_DATA_SINGLE Data)
+        public PaymentDataSingle AddPaymentDataSingle(PaymentDataSingle Data)
         {
-            return AddPaymentDataSingle(Data.DESCRIPTION, Data.PRICE, Data.PAYMENT_TYPE_ID, Data.DATE, Data.ADDON_TEXT, (int)Data.PAYMENT_GROUP_ID);
+            return AddPaymentDataSingle(Data.Description, Data.Price, Data.PaymentTypeId, Data.PaymentDate, Data.AddonText, (int)Data.PaymentGroupId);
         }
 
-        public PAYMENT_DATA_SINGLE AddPaymentDataSingle(string Description, decimal Price, int PaymentType, DateTime Date, string AddonText, int PaymentGroup)
+        public PaymentDataSingle AddPaymentDataSingle(string Description, decimal Price, int PaymentType, DateTime Date, string AddonText, int PaymentGroup)
         {
-            PAYMENT_DATA_SINGLE _Return;
+            PAYMENT_DATA_SINGLE _NewData;
 
-            _Return = new PAYMENT_DATA_SINGLE()
+            _NewData = new PAYMENT_DATA_SINGLE()
             {
                 DESCRIPTION = Description,
                 PRICE = Price,
@@ -63,18 +68,18 @@ namespace PO.BL
                 INSERT_BY = Username
             };
 
-            RepContext.PAYMENT_DATA_SINGLE.Add(_Return);
+            RepContext.PAYMENT_DATA_SINGLE.Add(_NewData);
             if (_InstantSave)
                 RepContext.SaveChanges();
 
-            return _Return;
+            return new PaymentDataSingle(_NewData);
         }
 
-        public PAYMENT_DATA_RECURRENT AddPaymentDataRecurrent(string Description, decimal Price, int PaymentType, string PaymentDueCode, int PaymentGroup)
+        public PaymentDataRecurrent AddPaymentDataRecurrent(string Description, decimal Price, int PaymentType, string PaymentDueCode, int PaymentGroup)
         {
-            PAYMENT_DATA_RECURRENT _Return;
+            PAYMENT_DATA_RECURRENT _NewReturn;
 
-            _Return = new PAYMENT_DATA_RECURRENT()
+            _NewReturn = new PAYMENT_DATA_RECURRENT()
             {
                 DESCRIPTION = Description,
                 PRICE = Price,
@@ -85,49 +90,66 @@ namespace PO.BL
                 INSERT_BY = Username
             };
 
-            RepContext.PAYMENT_DATA_RECURRENT.Add(_Return);
+            RepContext.PAYMENT_DATA_RECURRENT.Add(_NewReturn);
             if (_InstantSave)
                 RepContext.SaveChanges();
 
-            return _Return;
+            return new PaymentDataRecurrent(_NewReturn);
         }
 
-        public List<PAYMENT_DATA_SINGLE> GetPaymentDataSingle()
+        #endregion
+
+        #region Get
+
+        public List<PaymentDataSingle> GetPaymentDataSingle()
         {
-            List<PAYMENT_DATA_SINGLE> _Return = new List<PAYMENT_DATA_SINGLE>();
+            List<PaymentDataSingle> _Return = new List<PaymentDataSingle>();
             _Return = RepContext
                         .PAYMENT_DATA_SINGLE
+                        .Include(i => i.PAYMENT_TYPE)
+                        .Include(i => i.PAYMENT_GROUP)
                         //.Where(w => ApplicationUser
                         //                .Groups
                         //                .Select(s => s.PAYMENT_GROUP_ID).ToList()
                         //                .Contains(w.PAYMENT_GROUP_ID.GetValueOrDefault(0)))
-                        .ToList();
+                        
+                        .ToList()
+                        .Select(s => new BL.BLEntties.PaymentDataSingle(s)).ToList();
 
             return _Return;
         }
 
-        public List<PAYMENT_DATA_RECURRENT> GetPaymentDataRecurrent()
+        public List<PaymentDataRecurrent> GetPaymentDataRecurrent()
         {
-            List<PAYMENT_DATA_RECURRENT> _Return = new List<PAYMENT_DATA_RECURRENT>();
+            List<PaymentDataRecurrent> _Return = new List<PaymentDataRecurrent>();
             _Return = RepContext
                         .PAYMENT_DATA_RECURRENT
-                        .Where(w => ApplicationUser
-                                        .Groups
-                                        .Select(s => s.PAYMENT_GROUP_ID).ToList()
-                                        .Contains(w.PAYMENT_GROUP_ID.GetValueOrDefault(0)))
+                        .Include(i => i.PAYMENT_TYPE)
+                        .Include(i => i.PAYMENT_GROUP)
+                        //.Where(w => ApplicationUser
+                        //                .Groups
+                        //                .Select(s => s.PAYMENT_GROUP_ID).ToList()
+                        //                .Contains(w.PAYMENT_GROUP_ID.GetValueOrDefault(0)))
+                        .Select(s => new BL.BLEntties.PaymentDataRecurrent(s))
                         .ToList();
             return _Return;
         }
+
+        #endregion
+
+        #region Delete
 
         public void DeletePaymentDataSingle(int Id)
         {
-            var _Item = RepContext.PAYMENT_DATA_SINGLE.FirstOrDefault(f => f.ID == Id);
+            var _Item = RepContext
+                        .PAYMENT_DATA_SINGLE
+                        .FirstOrDefault(f => f.ID == Id);
             RepContext.PAYMENT_DATA_SINGLE.Remove(_Item);
         }
 
-        public void DeletePaymentDataSingle(PAYMENT_DATA_SINGLE RemoveData)
+        public void DeletePaymentDataSingle(PaymentDataSingle RemoveData)
         {
-            RepContext.PAYMENT_DATA_SINGLE.Remove(RemoveData);
+            DeletePaymentDataRecurrent(RemoveData.Id);
         }
 
         public void DeletePaymentDataRecurrent(int Id)
@@ -136,9 +158,11 @@ namespace PO.BL
             RepContext.PAYMENT_DATA_RECURRENT.Remove(_Item);
         }
 
-        public void DeletePaymentDataRecurrent(PAYMENT_DATA_RECURRENT RemoveData)
+        public void DeletePaymentDataRecurrent(PaymentDataSingle RemoveData)
         {
-            RepContext.PAYMENT_DATA_RECURRENT.Remove(RemoveData);
+            DeletePaymentDataRecurrent(RemoveData.Id);
         }
+
+        #endregion
     }
 }

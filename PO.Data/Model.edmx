@@ -4,62 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Context.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="ContextStoreContainer">
-          <EntitySet Name="PAYMENT_DATA_RECURRENT" EntityType="Context.Store.PAYMENT_DATA_RECURRENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Context.Store.PAYMENT_DATA_SINGLE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PAYMENT_GROUP" EntityType="Context.Store.PAYMENT_GROUP" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PAYMENT_TYPE" EntityType="Context.Store.PAYMENT_TYPE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ROLE" EntityType="Context.Store.ROLE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="Context.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="USER" EntityType="Context.Store.USER" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="USER_ROLE_PAYMENT_GROUP" EntityType="Context.Store.USER_ROLE_PAYMENT_GROUP" store:Type="Tables" store:Schema="dbo" store:Name="USER_ROLE_PAYMENT_GROUP">
-            <DefiningQuery>SELECT 
-      [USER_ROLE_PAYMENT_GROUP].[USER_ID] AS [USER_ID], 
-      [USER_ROLE_PAYMENT_GROUP].[ROLE_ID] AS [ROLE_ID], 
-      [USER_ROLE_PAYMENT_GROUP].[PAYMENT_GROUP_ID] AS [PAYMENT_GROUP_ID]
-      FROM [dbo].[USER_ROLE_PAYMENT_GROUP] AS [USER_ROLE_PAYMENT_GROUP]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP" Association="Context.Store.FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP">
-            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
-            <End Role="PAYMENT_DATA_RECURRENT" EntitySet="PAYMENT_DATA_RECURRENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE" Association="Context.Store.FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE">
-            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
-            <End Role="PAYMENT_DATA_RECURRENT" EntitySet="PAYMENT_DATA_RECURRENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" Association="Context.Store.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
-            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
-            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" Association="Context.Store.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
-            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
-            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ROLE_ROLE" Association="Context.Store.FK_ROLE_ROLE">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="ROLE1" EntitySet="ROLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP" Association="Context.Store.FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP">
-            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
-            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_ROLE" Association="Context.Store.FK_USER_ROLE_PAYMENT_GROUP_ROLE">
-            <End Role="ROLE" EntitySet="ROLE" />
-            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
-          </AssociationSet>
-          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_USER" Association="Context.Store.FK_USER_ROLE_PAYMENT_GROUP_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="Context.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PAYMENT_DATA_RECURRENT">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
-          <Property Name="PRICE" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DUE_CODE" Type="nvarchar" MaxLength="100" />
           <Property Name="PAYMENT_GROUP_ID" Type="int" />
           <Property Name="PAYMENT_TYPE_ID" Type="int" />
@@ -70,13 +22,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
-          <Property Name="PRICE" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DATE" Type="datetime" Nullable="false" />
           <Property Name="ADDON_TEXT" Type="nvarchar" MaxLength="500" />
           <Property Name="PAYMENT_GROUP_ID" Type="int" />
-          <Property Name="PAYMENT_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_ID" Type="int" />
           <Property Name="INSERT_AT" Type="datetime" />
           <Property Name="INSERT_BY" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -84,21 +36,21 @@
           <Key>
             <PropertyRef Name="PAYMENT_GROUP_ID" />
           </Key>
-          <Property Name="PAYMENT_GROUP_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_GROUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="PAYMENT_TYPE">
           <Key>
             <PropertyRef Name="PAYMENT_TYPE_ID" />
           </Key>
-          <Property Name="PAYMENT_TYPE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_TYPE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ROLE">
           <Key>
             <PropertyRef Name="ROLE_ID" />
           </Key>
-          <Property Name="ROLE_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="250" />
           <Property Name="REPORTING_TO" Type="int" />
           <Property Name="ROLE_ACTIVITY_ENUM" Type="int" />
@@ -107,9 +59,9 @@
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -117,9 +69,9 @@
           <Key>
             <PropertyRef Name="USER_ID" />
           </Key>
-          <Property Name="USER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="USERNAME" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="PASSWORD" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="LASTNAME" Type="nvarchar" MaxLength="50" />
           <Property Name="ACTIVE" Type="bit" Nullable="false" />
@@ -129,8 +81,7 @@
           <Property Name="UPDATE_BY" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-      Warnung 6002: Für Tabelle/Sicht 'DEV_COST_OVERVIEW.dbo.USER_ROLE_PAYMENT_GROUP' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.
-      -->
+Warnung 6002: Für Tabelle/Sicht 'PAYMENT_OVERVIEW.dbo.USER_ROLE_PAYMENT_GROUP' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="USER_ROLE_PAYMENT_GROUP">
           <Key>
             <PropertyRef Name="USER_ID" />
@@ -142,8 +93,8 @@
           <Property Name="PAYMENT_GROUP_ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP">
-          <End Role="PAYMENT_GROUP" Type="Context.Store.PAYMENT_GROUP" Multiplicity="0..1" />
-          <End Role="PAYMENT_DATA_RECURRENT" Type="Context.Store.PAYMENT_DATA_RECURRENT" Multiplicity="*" />
+          <End Role="PAYMENT_GROUP" Type="Self.PAYMENT_GROUP" Multiplicity="0..1" />
+          <End Role="PAYMENT_DATA_RECURRENT" Type="Self.PAYMENT_DATA_RECURRENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAYMENT_GROUP">
               <PropertyRef Name="PAYMENT_GROUP_ID" />
@@ -154,8 +105,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE">
-          <End Role="PAYMENT_TYPE" Type="Context.Store.PAYMENT_TYPE" Multiplicity="0..1" />
-          <End Role="PAYMENT_DATA_RECURRENT" Type="Context.Store.PAYMENT_DATA_RECURRENT" Multiplicity="*" />
+          <End Role="PAYMENT_TYPE" Type="Self.PAYMENT_TYPE" Multiplicity="0..1" />
+          <End Role="PAYMENT_DATA_RECURRENT" Type="Self.PAYMENT_DATA_RECURRENT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAYMENT_TYPE">
               <PropertyRef Name="PAYMENT_TYPE_ID" />
@@ -166,8 +117,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
-          <End Role="PAYMENT_GROUP" Type="Context.Store.PAYMENT_GROUP" Multiplicity="0..1" />
-          <End Role="PAYMENT_DATA_SINGLE" Type="Context.Store.PAYMENT_DATA_SINGLE" Multiplicity="*" />
+          <End Role="PAYMENT_GROUP" Type="Self.PAYMENT_GROUP" Multiplicity="0..1" />
+          <End Role="PAYMENT_DATA_SINGLE" Type="Self.PAYMENT_DATA_SINGLE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAYMENT_GROUP">
               <PropertyRef Name="PAYMENT_GROUP_ID" />
@@ -178,8 +129,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
-          <End Role="PAYMENT_TYPE" Type="Context.Store.PAYMENT_TYPE" Multiplicity="1" />
-          <End Role="PAYMENT_DATA_SINGLE" Type="Context.Store.PAYMENT_DATA_SINGLE" Multiplicity="*" />
+          <End Role="PAYMENT_TYPE" Type="Self.PAYMENT_TYPE" Multiplicity="0..1" />
+          <End Role="PAYMENT_DATA_SINGLE" Type="Self.PAYMENT_DATA_SINGLE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAYMENT_TYPE">
               <PropertyRef Name="PAYMENT_TYPE_ID" />
@@ -190,8 +141,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ROLE_ROLE">
-          <End Role="ROLE" Type="Context.Store.ROLE" Multiplicity="0..1" />
-          <End Role="ROLE1" Type="Context.Store.ROLE" Multiplicity="*" />
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+          <End Role="ROLE1" Type="Self.ROLE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ROLE">
               <PropertyRef Name="ROLE_ID" />
@@ -202,8 +153,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP">
-          <End Role="PAYMENT_GROUP" Type="Context.Store.PAYMENT_GROUP" Multiplicity="1" />
-          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Context.Store.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
+          <End Role="PAYMENT_GROUP" Type="Self.PAYMENT_GROUP" Multiplicity="1" />
+          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Self.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PAYMENT_GROUP">
               <PropertyRef Name="PAYMENT_GROUP_ID" />
@@ -214,8 +165,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USER_ROLE_PAYMENT_GROUP_ROLE">
-          <End Role="ROLE" Type="Context.Store.ROLE" Multiplicity="1" />
-          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Context.Store.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Self.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ROLE">
               <PropertyRef Name="ROLE_ID" />
@@ -226,8 +177,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_USER_ROLE_PAYMENT_GROUP_USER">
-          <End Role="USER" Type="Context.Store.USER" Multiplicity="1" />
-          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Context.Store.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="USER_ROLE_PAYMENT_GROUP" Type="Self.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="USER_ID" />
@@ -237,14 +188,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="ContextStoreContainer">
+          <EntitySet Name="PAYMENT_DATA_RECURRENT" EntityType="Self.PAYMENT_DATA_RECURRENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Self.PAYMENT_DATA_SINGLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_GROUP" EntityType="Self.PAYMENT_GROUP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_TYPE" EntityType="Self.PAYMENT_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ROLE_PAYMENT_GROUP" EntityType="Self.USER_ROLE_PAYMENT_GROUP" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[USER_ROLE_PAYMENT_GROUP].[USER_ID] AS [USER_ID], 
+[USER_ROLE_PAYMENT_GROUP].[ROLE_ID] AS [ROLE_ID], 
+[USER_ROLE_PAYMENT_GROUP].[PAYMENT_GROUP_ID] AS [PAYMENT_GROUP_ID]
+FROM [dbo].[USER_ROLE_PAYMENT_GROUP] AS [USER_ROLE_PAYMENT_GROUP]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP" Association="Self.FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP">
+            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
+            <End Role="PAYMENT_DATA_RECURRENT" EntitySet="PAYMENT_DATA_RECURRENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE" Association="Self.FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE">
+            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+            <End Role="PAYMENT_DATA_RECURRENT" EntitySet="PAYMENT_DATA_RECURRENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" Association="Self.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
+            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
+            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" Association="Self.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
+            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ROLE_ROLE" Association="Self.FK_ROLE_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="ROLE1" EntitySet="ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP" Association="Self.FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP">
+            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
+            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_ROLE" Association="Self.FK_USER_ROLE_PAYMENT_GROUP_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_USER" Association="Self.FK_USER_ROLE_PAYMENT_GROUP_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Context" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DataContext" p1:LazyLoadingEnabled="true">
           <EntitySet Name="PAYMENT_DATA_RECURRENT" EntityType="Context.PAYMENT_DATA_RECURRENT" />
-          <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Context.PAYMENT_DATA_SINGLE" />
           <EntitySet Name="PAYMENT_GROUP" EntityType="Context.PAYMENT_GROUP" />
           <EntitySet Name="PAYMENT_TYPE" EntityType="Context.PAYMENT_TYPE" />
           <EntitySet Name="ROLE" EntityType="Context.ROLE" />
@@ -258,14 +255,6 @@
           <AssociationSet Name="FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE" Association="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE">
             <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
             <End Role="PAYMENT_DATA_RECURRENT" EntitySet="PAYMENT_DATA_RECURRENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
-            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
-            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
-            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
-            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
           </AssociationSet>
           <AssociationSet Name="FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP" Association="Context.FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP">
             <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
@@ -283,6 +272,15 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
           </AssociationSet>
+          <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Context.PAYMENT_DATA_SINGLE" />
+          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
+            <End Role="PAYMENT_GROUP" EntitySet="PAYMENT_GROUP" />
+            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
+            <End Role="PAYMENT_TYPE" EntitySet="PAYMENT_TYPE" />
+            <End Role="PAYMENT_DATA_SINGLE" EntitySet="PAYMENT_DATA_SINGLE" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PAYMENT_DATA_RECURRENT">
           <Key>
@@ -299,22 +297,6 @@
           <NavigationProperty Name="PAYMENT_GROUP" Relationship="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP" FromRole="PAYMENT_DATA_RECURRENT" ToRole="PAYMENT_GROUP" />
           <NavigationProperty Name="PAYMENT_TYPE" Relationship="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE" FromRole="PAYMENT_DATA_RECURRENT" ToRole="PAYMENT_TYPE" />
         </EntityType>
-        <EntityType Name="PAYMENT_DATA_SINGLE">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ADDON_TEXT" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="PAYMENT_GROUP_ID" Type="Int32" />
-          <Property Name="PAYMENT_TYPE_ID" Type="Int32" Nullable="false" />
-          <Property Name="INSERT_AT" Type="DateTime" Precision="3" />
-          <Property Name="INSERT_BY" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="PAYMENT_GROUP" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" FromRole="PAYMENT_DATA_SINGLE" ToRole="PAYMENT_GROUP" />
-          <NavigationProperty Name="PAYMENT_TYPE" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" FromRole="PAYMENT_DATA_SINGLE" ToRole="PAYMENT_TYPE" />
-        </EntityType>
         <EntityType Name="PAYMENT_GROUP">
           <Key>
             <PropertyRef Name="PAYMENT_GROUP_ID" />
@@ -322,8 +304,8 @@
           <Property Name="PAYMENT_GROUP_ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="PAYMENT_DATA_RECURRENT" Relationship="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP" FromRole="PAYMENT_GROUP" ToRole="PAYMENT_DATA_RECURRENT" />
-          <NavigationProperty Name="PAYMENT_DATA_SINGLE" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" FromRole="PAYMENT_GROUP" ToRole="PAYMENT_DATA_SINGLE" />
           <NavigationProperty Name="USER_ROLE_PAYMENT_GROUP" Relationship="Context.FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP" FromRole="PAYMENT_GROUP" ToRole="USER_ROLE_PAYMENT_GROUP" />
+          <NavigationProperty Name="PAYMENT_DATA_SINGLE" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" FromRole="PAYMENT_GROUP" ToRole="PAYMENT_DATA_SINGLE" />
         </EntityType>
         <EntityType Name="PAYMENT_TYPE">
           <Key>
@@ -409,30 +391,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
-          <End Role="PAYMENT_GROUP" Type="Context.PAYMENT_GROUP" Multiplicity="0..1" />
-          <End Role="PAYMENT_DATA_SINGLE" Type="Context.PAYMENT_DATA_SINGLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PAYMENT_GROUP">
-              <PropertyRef Name="PAYMENT_GROUP_ID" />
-            </Principal>
-            <Dependent Role="PAYMENT_DATA_SINGLE">
-              <PropertyRef Name="PAYMENT_GROUP_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
-          <End Role="PAYMENT_TYPE" Type="Context.PAYMENT_TYPE" Multiplicity="1" />
-          <End Role="PAYMENT_DATA_SINGLE" Type="Context.PAYMENT_DATA_SINGLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PAYMENT_TYPE">
-              <PropertyRef Name="PAYMENT_TYPE_ID" />
-            </Principal>
-            <Dependent Role="PAYMENT_DATA_SINGLE">
-              <PropertyRef Name="PAYMENT_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP">
           <End Role="PAYMENT_GROUP" Type="Context.PAYMENT_GROUP" Multiplicity="1" />
           <End Role="USER_ROLE_PAYMENT_GROUP" Type="Context.USER_ROLE_PAYMENT_GROUP" Multiplicity="*" />
@@ -482,6 +440,46 @@
           </ReferentialConstraint>
         </Association>
         <EnumType Name="RoleActivityType" a:ExternalTypeName="Data.RoleActivityType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="PAYMENT_DATA_SINGLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ADDON_TEXT" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PAYMENT_GROUP_ID" Type="Int32" />
+          <Property Name="PAYMENT_TYPE_ID" Type="Int32" />
+          <Property Name="INSERT_AT" Type="DateTime" Precision="3" />
+          <Property Name="INSERT_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PAYMENT_GROUP" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" FromRole="PAYMENT_DATA_SINGLE" ToRole="PAYMENT_GROUP" />
+          <NavigationProperty Name="PAYMENT_TYPE" Relationship="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" FromRole="PAYMENT_DATA_SINGLE" ToRole="PAYMENT_TYPE" />
+        </EntityType>
+        <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP">
+          <End Type="Context.PAYMENT_GROUP" Role="PAYMENT_GROUP" Multiplicity="0..1" />
+          <End Type="Context.PAYMENT_DATA_SINGLE" Role="PAYMENT_DATA_SINGLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_GROUP">
+              <PropertyRef Name="PAYMENT_GROUP_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DATA_SINGLE">
+              <PropertyRef Name="PAYMENT_GROUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE">
+          <End Type="Context.PAYMENT_TYPE" Role="PAYMENT_TYPE" Multiplicity="0..1" />
+          <End Type="Context.PAYMENT_DATA_SINGLE" Role="PAYMENT_DATA_SINGLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_TYPE">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Principal>
+            <Dependent Role="PAYMENT_DATA_SINGLE">
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -495,21 +493,6 @@
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="PRICE" ColumnName="PRICE" />
                 <ScalarProperty Name="DUE_CODE" ColumnName="DUE_CODE" />
-                <ScalarProperty Name="PAYMENT_GROUP_ID" ColumnName="PAYMENT_GROUP_ID" />
-                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
-                <ScalarProperty Name="INSERT_AT" ColumnName="INSERT_AT" />
-                <ScalarProperty Name="INSERT_BY" ColumnName="INSERT_BY" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PAYMENT_DATA_SINGLE">
-            <EntityTypeMapping TypeName="Context.PAYMENT_DATA_SINGLE">
-              <MappingFragment StoreEntitySet="PAYMENT_DATA_SINGLE">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-                <ScalarProperty Name="DATE" ColumnName="DATE" />
-                <ScalarProperty Name="ADDON_TEXT" ColumnName="ADDON_TEXT" />
                 <ScalarProperty Name="PAYMENT_GROUP_ID" ColumnName="PAYMENT_GROUP_ID" />
                 <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
                 <ScalarProperty Name="INSERT_AT" ColumnName="INSERT_AT" />
@@ -579,6 +562,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_DATA_SINGLE">
+            <EntityTypeMapping TypeName="Context.PAYMENT_DATA_SINGLE">
+              <MappingFragment StoreEntitySet="PAYMENT_DATA_SINGLE">
+                <ScalarProperty Name="INSERT_BY" ColumnName="INSERT_BY" />
+                <ScalarProperty Name="INSERT_AT" ColumnName="INSERT_AT" />
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+                <ScalarProperty Name="PAYMENT_GROUP_ID" ColumnName="PAYMENT_GROUP_ID" />
+                <ScalarProperty Name="ADDON_TEXT" ColumnName="ADDON_TEXT" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -596,6 +594,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

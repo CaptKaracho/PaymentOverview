@@ -25,15 +25,13 @@ namespace PO.Debug.Console
 
             if (_Data.Count == 0)
             {
-                _Bl.AddPaymentDataSingle(new Data.PAYMENT_DATA_SINGLE()
+                _Bl.AddPaymentDataSingle(new BL.BLEntties.PaymentDataSingle()
                 {
-                    DATE = DateTime.Now,
-                    DESCRIPTION = "Test Bezahlung",
-                    INSERT_AT = DateTime.Now,
-                    INSERT_BY = _Bl.Username,
-                    PRICE = 200,
-                    PAYMENT_TYPE_ID = 1,
-                    PAYMENT_GROUP_ID = 1
+                    PaymentDate = DateTime.Now,
+                    Description = "Test Bezahlung",
+                    Price = 200,
+                    PaymentTypeId = 1,
+                    PaymentGroupId = 1
                 });
             }
 

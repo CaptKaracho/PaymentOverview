@@ -11,7 +11,7 @@ namespace PO.Application.WebApi.Controllers
     public class UserController : ApiController
     {
         /// <summary>
-        /// http://localhost:11112/api/user/login?username=asdf&password=23
+        
         /// </summary>
         /// <returns></returns>
         [Route("login")]

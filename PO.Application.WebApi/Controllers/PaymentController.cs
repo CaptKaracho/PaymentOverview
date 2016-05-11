@@ -10,31 +10,39 @@ namespace PO.Application.WebApi.Controllers
     [RoutePrefix("api/Payment")]
     public class PaymentController : ApiController
     {
-         [Route("GetAllPaymentSingleTest")]
-        [HttpPost]
-        public string GetPayment()
+        public BL.BLEntties.UserData ApplicationUser
         {
-             return "PaymentSIngle OK";
+            get
+            {
+                return new BL.BLEntties.UserData();
+            }
+        }
+
+        [Route("GetAllPaymentSingleTest")]
+        [HttpPost]
+        public IHttpActionResult GetTest()
+        {
+            return Json("PaymentSIngle OK");
         }
 
         //TODO: applicationUser in session ausslagern
         [Route("GetAllPaymentSingle")]
         [HttpPost]
-        public string GetPayment(BL.BLEntties.UserData ApplicationUser)
+        public IHttpActionResult GetPayment()
         {
             using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
             {
-                return Json<List<PO.Data.PAYMENT_DATA_SINGLE>>(_Proxy.GetPaymentDataSingle()).SerializerSettings.ToString();
+                return Json(_Proxy.GetPaymentDataSingle());
             }
         }
 
         [Route("AddPaymentSingle")]
         [HttpPost]
-        public string AddPayment(BL.BLEntties.UserData ApplicationUser)
+        public IHttpActionResult AddPayment(string Description, decimal Price, int PaymentType, string AddonText, int PaymentGroup)
         {
             using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
             {
-                return Json<List<PO.Data.PAYMENT_DATA_SINGLE>>(_Proxy.GetPaymentDataSingle()).SerializerSettings.ToString();
+                return Json(_Proxy.AddPaymentDataSingle(Description, Price, PaymentType, DateTime.Now, AddonText, PaymentGroup));
             }
         }
 

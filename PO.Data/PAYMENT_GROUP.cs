@@ -17,15 +17,15 @@ namespace PO.Data
         public PAYMENT_GROUP()
         {
             this.PAYMENT_DATA_RECURRENT = new HashSet<PAYMENT_DATA_RECURRENT>();
-            this.PAYMENT_DATA_SINGLE = new HashSet<PAYMENT_DATA_SINGLE>();
             this.USER_ROLE_PAYMENT_GROUP = new HashSet<USER_ROLE_PAYMENT_GROUP>();
+            this.PAYMENT_DATA_SINGLE = new HashSet<PAYMENT_DATA_SINGLE>();
         }
     
         public int PAYMENT_GROUP_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         public virtual ICollection<PAYMENT_DATA_RECURRENT> PAYMENT_DATA_RECURRENT { get; set; }
-        public virtual ICollection<PAYMENT_DATA_SINGLE> PAYMENT_DATA_SINGLE { get; set; }
         public virtual ICollection<USER_ROLE_PAYMENT_GROUP> USER_ROLE_PAYMENT_GROUP { get; set; }
+        public virtual ICollection<PAYMENT_DATA_SINGLE> PAYMENT_DATA_SINGLE { get; set; }
     }
 }

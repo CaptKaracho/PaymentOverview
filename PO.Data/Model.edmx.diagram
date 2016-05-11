@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="89f6b222d39f46e481a9e8f428b5313a" Name="Diagramm1" ZoomLevel="47">
+      <Diagram DiagramId="89f6b222d39f46e481a9e8f428b5313a" Name="Diagramm1" ZoomLevel="81">
         <EntityTypeShape EntityType="Context.PAYMENT_DATA_RECURRENT" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Context.PAYMENT_DATA_SINGLE" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Context.PAYMENT_GROUP" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Context.PAYMENT_TYPE" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Context.ROLE" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
@@ -15,12 +14,13 @@
         <EntityTypeShape EntityType="Context.USER_ROLE_PAYMENT_GROUP" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_GROUP" ManuallyRouted="false" />
         <AssociationConnector Association="Context.FK_PAYMENT_DATA_RECURRENT_PAYMENT_TYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" ManuallyRouted="false" />
-        <AssociationConnector Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" ManuallyRouted="false" />
         <AssociationConnector Association="Context.FK_USER_ROLE_PAYMENT_GROUP_PAYMENT_GROUP" ManuallyRouted="false" />
         <AssociationConnector Association="Context.FK_ROLE_ROLE" ManuallyRouted="false" />
         <AssociationConnector Association="Context.FK_USER_ROLE_PAYMENT_GROUP_ROLE" ManuallyRouted="false" />
         <AssociationConnector Association="Context.FK_USER_ROLE_PAYMENT_GROUP_USER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Context.PAYMENT_DATA_SINGLE" Width="1.5" PointX="6" PointY="4.125" />
+        <AssociationConnector Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_GROUP" />
+        <AssociationConnector Association="Context.FK_PAYMENT_DATA_SINGLE_PAYMENT_TYPE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
