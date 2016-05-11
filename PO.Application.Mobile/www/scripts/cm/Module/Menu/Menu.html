@@ -1,0 +1,43 @@
+﻿<script>
+    /// <reference path="Menu.js" />
+
+    function menuClick(menu) {
+    }
+
+
+</script>
+<div class="menu">
+    <div class="menu-top">
+        <div class="menu-description">Navigation</div>
+        <ul class="list list-vertical">
+            <li>
+                <div class="menu-element clickable">
+                    <div class="icon "></div>
+                    <a onclick="clickMenu(2)">Process</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <div class="menu-sub">
+        <div class="menu-description">Information</div>
+        <ul class="list list-vertical ">
+            <li>
+                <div class="menu-element clickable">
+                    <span>
+                            <label>Status: </label>
+                            <span>Offline</span>
+                    </span>
+                </div>
+            </li>
+
+            <li>
+                <div class="menu-element clickable">
+                    <div class="icon-after icon-24-logout-dark"></div>
+                    <a onclick="logout()">Logout</a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿
+
+
+.icon-32-drawer-light {
+    height: 32px !important;
+    width: 32px !important;
+    background: url(../images/kendo_icons_32.png) -1439px 0 !important;
+    background-repeat: no-repeat !important;
+}
+
+.icon-32-drawer-dark {
+    height: 32px !important;
+    width: 32px !important;
+    background: url(../images/kendo_icons_32_dark.png) -1439px 0 !important;
+    background-repeat: no-repeat !important;
+}
+
+
+.icon-24-loader-light{
+    height: 24px !important;
+    width: 24px !important;
+    background: url(../images/kendo_icons_24.png) -1151px 0 !important;
+    background-repeat: no-repeat !important;
+}
+
+.icon-24-arrow1-ligth{
+    height: 24px !important;
+    width: 24px !important;
+    background: url(../images/kendo_icons_24.png) -460px 0 !important;
+    background-repeat: no-repeat !important;
+}
+.icon-24-arrow1-dark{
+    height: 24px !important;
+    width: 24px !important;
+    background: url(../images/kendo_icons_24_dark.png) -460px 0 !important;
+    background-repeat: no-repeat !important;
+}
+
+.icon-24-logout-light{
+    height: 24px !important;
+    width: 24px !important;
+    background: url(../images/kendo_icons_24.png) -240px 0 !important;
+    background-repeat: no-repeat !important;
+}
+.icon-24-logout-dark{
+    height: 24px !important;
+    width: 24px !important;
+    background: url(../images/kendo_icons_24_dark.png) -240px 0 !important;
+    background-repeat: no-repeat !important;
+}

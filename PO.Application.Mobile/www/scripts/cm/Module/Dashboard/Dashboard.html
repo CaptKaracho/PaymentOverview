@@ -1,0 +1,70 @@
+﻿<script>
+    /// <reference path="Dashboard.js" />
+    $(document).ready(function () {
+
+        changeTab(1);
+
+    });
+
+
+
+    function changeTab(tab) {
+
+        var tabId;
+        if (tab === 1) {
+            tabId = tab;
+
+        } else {
+            $(".list-tab .selected").removeClass("selected");
+            $(tab).addClass("selected");
+            tabId = $(tab).data("tabid");
+        }
+
+        if (tabId == 1) {
+
+            $("#today").removeClass("hidden");
+            $("#year").addClass("hidden");
+            CMControler.loadControl(JControls.controls.chartProcessDay, 'chartProcessDay');
+            CMControler.loadControl(JControls.controls.chartDataDay, 'chartDataDay');
+
+        }
+        else if (tabId == 2) {
+            $("#today").addClass("hidden");
+            $("#year").removeClass("hidden");
+            CMControler.loadControl(JControls.controls.chartProcessYear, 'chartProcessYear');
+            CMControler.loadControl(JControls.controls.chartDataYear, 'chartDataYear');
+            CMControler.loadControl(JControls.controls.chartProcessFunktYear, 'chartProcessFunktYear');
+
+        }
+    };
+</script>
+<div id="dasbhoard_tablist">
+    <ul class="list list-horizontal list-tab">
+        <li class="selected" data-tabid="1" onclick="changeTab(this)">Heute
+        </li>
+        <li data-tabid="2" onclick="changeTab(this)">Jahr
+        </li>
+    </ul>
+</div>
+
+<div id="year" class="hidden">
+    <div id="chartProcessYear">
+    </div>
+    <br />
+    <div id="chartDataYear">
+    </div>
+    <br />
+    <div id="chartProcessFunktYear">
+    </div>
+    <br />
+</div>
+<div id="today">
+    <div id="chartProcessDay">
+    </div>
+    <br />
+    <div id="chartDataDay">
+    </div>
+    <br />
+
+
+</div>
