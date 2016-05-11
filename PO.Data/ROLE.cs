@@ -23,7 +23,7 @@ namespace PO.Data
         public int ROLE_ID { get; set; }
         public string DESCRIPTION { get; set; }
         public Nullable<int> REPORTING_TO { get; set; }
-        public Nullable<Data.RoleActivityType> ROLE_ACTIVITY_ENUM { get; set; }
+        public Nullable<int> ROLE_ACTIVITY_ENUM { get; set; }
     
         public virtual ICollection<ROLE> ROLE1 { get; set; }
         public virtual ROLE ROLE2 { get; set; }

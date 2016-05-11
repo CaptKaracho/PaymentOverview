@@ -26,12 +26,12 @@ namespace PO.Data
         }
     
         public DbSet<PAYMENT_DATA_RECURRENT> PAYMENT_DATA_RECURRENT { get; set; }
+        public DbSet<PAYMENT_DATA_SINGLE> PAYMENT_DATA_SINGLE { get; set; }
         public DbSet<PAYMENT_GROUP> PAYMENT_GROUP { get; set; }
         public DbSet<PAYMENT_TYPE> PAYMENT_TYPE { get; set; }
         public DbSet<ROLE> ROLE { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<USER> USER { get; set; }
         public DbSet<USER_ROLE_PAYMENT_GROUP> USER_ROLE_PAYMENT_GROUP { get; set; }
-        public DbSet<PAYMENT_DATA_SINGLE> PAYMENT_DATA_SINGLE { get; set; }
     }
 }

@@ -14,9 +14,10 @@ namespace PO.Data
     
     public partial class USER_ROLE_PAYMENT_GROUP
     {
-        public int USER_ID { get; set; }
-        public int ROLE_ID { get; set; }
-        public int PAYMENT_GROUP_ID { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> ROLE_ID { get; set; }
+        public Nullable<int> PAYMENT_GROUP_ID { get; set; }
+        public Nullable<int> USER_ID { get; set; }
     
         public virtual PAYMENT_GROUP PAYMENT_GROUP { get; set; }
         public virtual ROLE ROLE { get; set; }
