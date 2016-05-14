@@ -6,17 +6,27 @@
 	<meta charset="utf-8" />
 </head>
 <body>
+    <ul>
 
-    http://localhost:11112/api/Payment/GetAllPaymentSingle<br />
-    [Route("GetAllPaymentSingle")]<br />
-    [HttpPost]<br />
-    public IHttpActionResult GetPayment()<br />
-    <br />
-    <br />
-    http://localhost:11112/api/Payment/GetAllPaymentSingle?Description=''&Price=0&PaymentType=0&AddonText=''&PaymentGroup=0<br />
-    [Route("AddPaymentSingle")]<br />
-    [HttpPost]<br />
-    public IHttpActionResult AddPayment(string Description, decimal Price, int PaymentType, string AddonText, int PaymentGroup)<br />
+        <li>
+            http://localhost:11112/api/Payment/GetAllPaymentSingle <br />
+            [Route("GetAllPaymentSingle")]<br />
+            [HttpPost]<br />
+            public IHttpActionResult GetPayment()<br />
+        </li>
+        <li>
+            http://192.168.0.104/PaymentOverview/api/Payment/GetAllPaymentSingle?Description=''&Price=0&PaymentType=0&AddonText=''&PaymentGroup=0<br />
+            [Route("AddPaymentSingle")]<br />
+            [HttpPost]<br />
+            public IHttpActionResult AddPayment(string Description, decimal Price, int PaymentType, string AddonText, int PaymentGroup)<br />
+        </li>
+        <li>
+            http://localhost:11112/api/User/Login?Username=''&Password=''<br />
+            [Route("login")]<br />
+            [HttpPost]<br />
+            public object Login(string Username, string Password)
+            </li>
+    </ul>
 
 </body>
 </html>

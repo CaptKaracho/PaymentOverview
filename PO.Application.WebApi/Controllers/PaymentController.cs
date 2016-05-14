@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace PO.Application.WebApi.Controllers
 {
     [RoutePrefix("api/Payment")]
-    public class PaymentController : ApiController
+    public class PaymentController : BaseController
     {
         public BL.BLEntties.UserData ApplicationUser
         {
@@ -32,7 +32,7 @@ namespace PO.Application.WebApi.Controllers
         {
             using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
             {
-                return Json(_Proxy.GetPaymentDataSingle());
+                return Json(_Proxy.GetPaymentDataSingle(), JsonOption);
             }
         }
 
@@ -42,7 +42,7 @@ namespace PO.Application.WebApi.Controllers
         {
             using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
             {
-                return Json(_Proxy.AddPaymentDataSingle(Description, Price, PaymentType, DateTime.Now, AddonText, PaymentGroup));
+                return Json(_Proxy.AddPaymentDataSingle(Description, Price, PaymentType, DateTime.Now, AddonText, PaymentGroup), JsonOption);
             }
         }
 

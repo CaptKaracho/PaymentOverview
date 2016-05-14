@@ -12,6 +12,8 @@ namespace PO.Data
     using System;
     using System.Collections.Generic;
     
+    
+    [Serializable]
     public partial class USER_ROLE_PAYMENT_GROUP
     {
         public int ID { get; set; }

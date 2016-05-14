@@ -12,6 +12,8 @@ namespace PO.Data
     using System;
     using System.Collections.Generic;
     
+    
+    [Serializable]
     public partial class sysdiagrams
     {
         public string name { get; set; }

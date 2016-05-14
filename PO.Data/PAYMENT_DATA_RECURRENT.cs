@@ -12,6 +12,8 @@ namespace PO.Data
     using System;
     using System.Collections.Generic;
     
+    
+    [Serializable]
     public partial class PAYMENT_DATA_RECURRENT
     {
         public int ID { get; set; }

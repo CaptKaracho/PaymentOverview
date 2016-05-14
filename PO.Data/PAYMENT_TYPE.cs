@@ -12,6 +12,8 @@ namespace PO.Data
     using System;
     using System.Collections.Generic;
     
+    
+    [Serializable]
     public partial class PAYMENT_TYPE
     {
         public PAYMENT_TYPE()

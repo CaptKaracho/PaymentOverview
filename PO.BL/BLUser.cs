@@ -18,16 +18,20 @@ namespace PO.BL
         {
             UserData _Return = new UserData();
 
-            var _user = RepContext.USER.FirstOrDefault(f => f.USERNAME == Username && f.PASSWORD == Password);
+            var _user = RepContext.USER
+                                    .AsNoTracking()
+                                    .FirstOrDefault(f => f.USERNAME == Username && f.PASSWORD == Password);
 
             if (_user != null)
             {
                 _Return.User = _user;
 
                 _Return.Groups = RepContext.USER_ROLE_PAYMENT_GROUP
-                    .Where(w => w.USER_ID == _user.USER_ID)
-                    .Include(i => i.ROLE)
-                    .ToList();
+                                    .Where(w => w.USER_ID == _user.USER_ID)
+                                    .Include(i => i.ROLE)
+                                    .Include(i => i.PAYMENT_GROUP)
+                                    .AsNoTracking()
+                                    .ToList();
 
             }
             return _Return;
