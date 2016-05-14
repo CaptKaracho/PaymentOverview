@@ -1,11 +1,79 @@
 ﻿<!DOCTYPE html>
-<html>
+<html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 	<meta charset="utf-8" />
+     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+    <script src="../AjaxManager.js"></script>
 </head>
 <body>
+    <script>
+         AjaxData.set_Url('http://192.168.0.104/PaymentOverview/api');
 
+        function saveData(callback) {
+            AjaxData.set_Controller('Payment');
+            AjaxData.set_Method('AddPaymentSingle');
+            AjaxData.set_HttpMethod("POST");
+            AjaxData.set_Parameter({
+                Description:$("#description")[0].value,
+                Price:$("#price")[0].value,
+                PaymentType:$("#type")[0].selectedOptions[0].value,
+                AddonText:'',
+                PaymentGroup:$("#group")[0].selectedOptions[0].value
+            });
+            AjaxData.ExecuteCall(function (e) {
+                callback(e);
+            });
+        }
+        
+        function addPayment(){
+            
+           // saveData();
+            
+            var group =$("#group")[0].selectedOptions[0].value;
+             var description =$("#description")[0].value;
+              var  price=$("#price")[0].value;
+               var type =$("#type")[0].selectedOptions[0].value;
+                
+           
+           // saveData(function(e){console.dir(e)});
+        }
+        
+        </script>
+    
+<ul>
+     <li>
+        
+       <select id="group">
+           
+           <option value="1">Group1</option>
+           <option value="1">Group2</option>
+           
+       </select>
+        </li>
+    <li>
+        
+       <select id="type">
+           
+           <option value="1">Type1</option>
+           <option value="1">Type2</option>
+           
+       </select>
+        </li>
+          <li>
+        <input type="text" id="description" />
+         </li>
+           <li>
+        <input type="number" id="price" />
+         </li>
+        <li>
+            <input type="button" id="addPayment" value="Add" onclick="addPayment()">
+            
+        </li>
+    </li>
+    
+    
+    </ul> 
 </body>
 </html>
