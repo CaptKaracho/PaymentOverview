@@ -1,0 +1,28 @@
+﻿.data-list {
+    list-style: none;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow:auto;
+}
+
+    .data-list ul {
+        list-style: none;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+
+    .data-list .data-list-row {
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .data-list .data-list-row .data-item-row {
+            border: 1px solid black;
+        }
+
+            .data-list .data-list-row .data-item-row .data-item-col {
+                display: inline-block;
+                padding:10px;
+                /*width:100px;*/
+                vertical-align:top;
+            }

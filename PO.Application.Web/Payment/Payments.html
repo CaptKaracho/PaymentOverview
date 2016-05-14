@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html ng-app="paymentOverview">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+    <link href="../style.css" rel="stylesheet" />
+    <script src="../AjaxManager.js"></script>
+    <script src="../scripts/angular.min.js"></script>
+</head>
+<body ng-controller="paymentsCtrl">
+    <script>
+
+        AjaxData.set_Url('http://192.168.0.104/PaymentOverview/api');
+
+        function callData(callback) {
+            AjaxData.set_Controller('Payment');
+            AjaxData.set_Method('GetAllPaymentSingle');
+            AjaxData.set_HttpMethod("POST");
+            AjaxData.ExecuteCall(function (e) {
+                callback(e);
+            });
+        }
+
+        var paymentOverview = angular.module('paymentOverview', []);
+        paymentOverview.controller('paymentsCtrl', function ($scope) {
+            callData(function (e) {
+                console.dir(e);
+                $scope.payments = e;
+                $scope.$apply();
+
+            });
+        });
+
+
+    </script>
+
+    <input type="button" id="btnGetData" title="GetData" value="GetData" onclick="callData()" />
+    <ul class="data-list">
+        <li ng-repeat="payment in payments" class="data-list-row">
+            <ul class="data-item-row">
+                <li class='data-item-col'>{{payment.Id}}</li>
+                <li class='data-item-col'>{{payment.Description}}</li>
+                <li class='data-item-col'>{{payment.PaymentDate }}</li>
+                <li class='data-item-col'>{{ payment.PaymentGroup}}</li>
+                <li class='data-item-col'>{{ payment.PaymentGroupId}} </li>
+                <li class='data-item-col'>{{ payment.PaymentType}} </li>
+                <li class='data-item-col'> {{payment.PaymentTypeId}}</li>
+                <li class='data-item-col'> {{payment.Price}} </li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>

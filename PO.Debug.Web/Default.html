@@ -1,13 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
     <script src="default.js"></script>
+    <link href="style.css" rel="stylesheet" />
 </head>
 <body>
+    <script>
 
+        
+        
+        AjaxData.set_Url('http://192.168.0.104/PaymentOverview/api');
+        callData();
+        function callData() {
+            AjaxData.set_Controller('Payment');
+            AjaxData.set_Method('GetAllPaymentSingle');
+            AjaxData.set_HttpMethod("POST");
+            AjaxData.ExecuteCall(function (e) {
+                var paymentList = $("#paymentList");
+                console.dir(paymentList);
+                var start = "<li class='data-list-row'><ul>";
+                var end = "</ul></li>";
+                var elements = "";
+                $.each(e, function (key, value) {
+                    console.dir(value);
+                    elements += "<li><ul class='data-item-row'>";
+                    elements += "<li class='data-item-col'>" + value.Id + "</li>";
+                    elements += "<li class='data-item-col'>" + value.Description + "</li>";
+                    elements += "<li class='data-item-col'>" + value.PaymentDate + "</li>";
+                    elements += "<li class='data-item-col'>" + value.PaymentGroup + "</li>";
+                    elements += "<li class='data-item-col'>" + value.PaymentGroupId + "</li>";
+                    elements += "<li class='data-item-col'>" + value.PaymentType + "</li>";
+                    elements += "<li class='data-item-col'>" + value.PaymentTypeId + "</li>";
+                    elements += "<li class='data-item-col'>" + value.Price + "</li>";
+                    elements += "</ul></li>";
+                    
+                });
+                paymentList.append(start + elements + end);
+            });
+        }
+
+
+
+    </script>
+    
+    <ul id="paymentList" class="data-list">
+    </ul>
+    <input type="button" id="btnGetData" title="GetData" value="GetData" onclick="callData()" />
 </body>
 </html>
