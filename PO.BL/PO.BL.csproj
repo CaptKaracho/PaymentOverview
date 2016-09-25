@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BLBase.cs" />
     <Compile Include="BLEntties\PaymentData.cs" />
+    <Compile Include="BLEntties\ReturnObjectcs.cs" />
     <Compile Include="BLEntties\UserData.cs" />
     <Compile Include="BLPayment.cs" />
     <Compile Include="BLUser.cs" />
@@ -58,6 +60,9 @@
       <Project>{04f6e98f-7d4a-44c3-8b13-45e52ec3363c}</Project>
       <Name>PO.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

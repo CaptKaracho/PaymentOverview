@@ -18,6 +18,8 @@ namespace PO.Application.WebApi.Controllers
             }
         }
 
+        public BL.BLEntties.ReturnObject ReturnData { get; set; }
+
         [Route("GetAllPaymentSingleTest")]
         [HttpPost]
         public IHttpActionResult GetTest()
@@ -27,13 +29,22 @@ namespace PO.Application.WebApi.Controllers
 
         //TODO: applicationUser in session ausslagern
         [Route("GetAllPaymentSingle")]
-        [HttpPost]
+        [HttpGet]
         public IHttpActionResult GetPayment()
         {
-            using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
+            try
             {
-                return Json(_Proxy.GetPaymentDataSingle(), JsonOption);
+                using (PO.BL.BLPayment _Proxy = new BL.BLPayment(ApplicationUser))
+                {
+                    ReturnData.Data= Json(_Proxy.GetPaymentDataSingle(), JsonOption);
+                }
             }
+            catch (System.Exception _Ex)
+            {
+                ReturnData.Error= Json(_Ex.StackTrace.ToString(), JsonOption);
+            }
+
+            return ReturnData;
         }
 
         [Route("AddPaymentSingle")]
