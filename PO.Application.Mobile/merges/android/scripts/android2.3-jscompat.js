@@ -1,4 +1,4 @@
-﻿// Polyfill für "Function.prototype.bind()"-Unterstützung unter Android 2.3
+﻿// Polyfill for Function.prototype.bind() support on Android 2.3
 (function () {
     if (!Function.prototype.bind) {
         Function.prototype.bind = function (thisValue) {
@@ -6,17 +6,17 @@
                 throw new TypeError(this + " cannot be bound as it is not a function");
             }
 
-            // "bind()" lässt auch vorangestellte Argumente für den Aufruf zu
+            // bind() also permits prepending arguments to the call
             var preArgs = Array.prototype.slice.call(arguments, 1);
 
-            // Die tatsächliche Funktion zum Binden des "this"-Werts und der "this"-Argumente an
+            // The actual function to bind the "this" value and arguments to
             var functionToBind = this;
             var noOpFunction = function () { };
 
-            // Das zu verwendende "this"-Argument
+            // The "this" argument to use
             var thisArg = this instanceof noOpFunction && thisValue ? this : thisValue;
 
-            // Die resultierende gebundene Funktion
+            // The resulting bound function
             var boundFunction = function () {
                 return functionToBind.apply(thisArg, preArgs.concat(Array.prototype.slice.call(arguments)));
             };

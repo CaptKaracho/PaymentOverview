@@ -1,23 +1,29 @@
-﻿header {
+﻿body{
+    font-family:Calibri;
+}
+
+ul{list-style:none;
+   margin:0px;
+   padding:0px;
+}
+
+header {
     z-index: 1000;
     position: absolute;
     height: 40px;
     width: 100%;
-    background-color: #0094ff;
+    /*background-color: #0094ff;*/
     top: 0px;
     left: 0px;
 }
 
-content {
-    z-index: 500;
-    position: absolute;
-    width: 100%;
-    top: 50px;
-    left: 0px;
+.content-wrapper {
+   background-color:green;
+   margin:80px;
 }
 
-.hidden{
-    visibility:hidden;
+.hidden {
+    visibility: hidden;
 }
 
 #overlay_loading {
@@ -30,17 +36,27 @@ content {
     background-color: rgba(168, 163, 163, 0.44);
 }
 
-  #loader {
-        position: absolute;
-        right:10px;
-        top: 8px;
-        width: 15px;
-        height: 15px;
-        /*background-color: #808080;*/
-        border:4px solid white;
-        transform: rotate();
-        animation:spin 2s infinite linear;
-    }
+div.drawer{
+   
+    left:0px;
+    display:block;
+    position:absolute;
+    width:20px;
+    height:20px;
+    background-color:red;
+}
+
+#loader {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 15px;
+    height: 15px;
+    /*background-color: #808080;*/
+    border: 4px solid white;
+    transform: rotate();
+    animation: spin 2s infinite linear;
+}
 
 @-webkit-keyframes spin {
     0% {
@@ -51,3 +67,56 @@ content {
         -webkit-transform: rotate(360deg);
     }
 }
+
+#paymentList {
+}
+
+.button{
+    display:block;
+    height:50px;
+    border-radius:10px;
+    background-color:#075fcb;
+    position:relative;
+    
+    cursor:pointer;
+}
+.button>span{
+    padding-top:10px !important;
+    font-size:23px;
+    display:block;
+    color:white;
+    text-align:center;
+    font-weight:bold;
+}
+.button .button-large{
+    width:100%;
+}
+.button .button-small{
+    width:25%;
+}
+
+
+.content-view {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    
+    
+}
+
+    .content-view .data-list {
+        border: 1px solid grey;
+        border-radius: 5px;
+        list-style: none !important;
+       padding: 10px;
+    }
+
+        .content-view .data-list li {
+            border-bottom: 1px solid grey;
+            margin-bottom: 10px;
+        }
+
+            .content-view .data-list li .list-element {
+                display: block;
+                margin-left: 10px;
+                margin-bottom: 10px;
+            }

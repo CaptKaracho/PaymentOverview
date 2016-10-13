@@ -36,6 +36,10 @@
         return Mustache.to_html(this.template, { arr: this.data });
     };
 
+    htmlManager.draw = function () {
+        return Mustache.to_html(this.template, undefined);
+    };
+
     return htmlManager;
 
 })();

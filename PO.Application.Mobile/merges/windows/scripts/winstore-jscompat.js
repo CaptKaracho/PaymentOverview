@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. Alle Rechte vorbehalten.
-// Lizenziert unter der Apache-Lizenz, Version 2.0. 
-// Siehe "http://www.apache.org/licenses/LICENSE-2.0.html".
-// Shim für dynamischen JavaScript-Inhalt für Windows Store-Apps
+﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved.
+// Licensed under the Apache License, Version 2.0. 
+// See http://www.apache.org/licenses/LICENSE-2.0.html.
+// JavaScript Dynamic Content shim for Windows Store apps
 (function () {
 
     if (window.MSApp && MSApp.execUnsafeLocalFunction) {
 
-        // Einige Knoten weisen eine Eigenschaft "attributes" auf, die eine Schattenkopie der Eigenschaft "Node.prototype.attributes" ist.
-        //  Dies bedeutet, dass die Attribute des Knotens nicht angezeigt werden (interessanterweise scheint für die VS-Debugkonsole
-        //  das gleiche Problem zu gelten).
+        // Some nodes will have an "attributes" property which shadows the Node.prototype.attributes property
+        //  and means we don't actually see the attributes of the Node (interestingly the VS debug console
+        //  appears to suffer from the same issue).
         //
         var Element_setAttribute = Object.getOwnPropertyDescriptor(Element.prototype, "setAttribute").value;
         var Element_removeAttribute = Object.getOwnPropertyDescriptor(Element.prototype, "removeAttribute").value;
@@ -25,7 +25,7 @@
             try {
                 Element_setAttribute.call(element, attribute, value);
             } catch (e) {
-                // Ignorieren
+                // ignore
             }
         }
 
@@ -96,7 +96,7 @@
             function cleanseAttributes(element) {
                 var attributes = getAttributes(element);
                 if (attributes && attributes.length) {
-                    // Da die Attributauflistung live ist, ist es einfacher, die umbenannten Elemente in die Warteschlange einzureihen.
+                    // because the attributes collection is live it is simpler to queue up the renames
                     var events;
                     for (var i = 0, len = attributes.length; i < len; i++) {
                         var attribute = attributes[i];

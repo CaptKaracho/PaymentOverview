@@ -1,25 +1,110 @@
 <!DOCTYPE html>
 <html>
-    <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
-    <!--
-        Passen Sie die Inhaltssicherheitsrichtlinie im META-Tag unten nach Bedarf an. Fügen Sie "default-src" die Option "unsafe-inline" hinzu, um Inline-JavaScript zu aktivieren.
-        Details finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=617521".
-    -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>PO.Application.Mobile</title>
-    </head>
-    <body>
-        <div class="app">
-            <p id="deviceready" class="event">Die Verbindung mit dem Gerät wird hergestellt.</p>
+<head>
+
+    <title>PO.Application.Mobile</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+
+    <script src="assets/lib/underscore.js"></script>
+    <script src="assets/lib/backbone.js"></script>
+    <script src="assets/lib/dataManager.js"></script>
+    <script src="assets/lib/helper.js"></script>
+
+    <link href="assets/css/app.css" rel="stylesheet" />
+
+    <script src="app/Application.js"></script>
+    <script src="app/View/Payments.js"></script>
+    <script src="app/model/Payment.js"></script>
+    <script type="text/template" id="details">
+        <div class="data-list}"
+            <% _.each(collection, function(item) { %>
+            <li>
+                <%= item.Description %> <%= item.PaymentDate%>
+            </li>
+            <%})%>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-    </body>
+    </script>
+
+    <script type="text/javascript">
+        var app;
+        $(document).ready(function () {
+            app = new Application();
+
+
+            Application.prototype.slider = { visible: false };
+
+
+
+            $(".drawer").click(function () {
+                console.dir(app.slider.visible);
+                if (app.slider.visible == false) {
+                    console.dir("show");
+                    app.slider.visible = true;
+                    $(".slider").addClass("show");
+                    $(".slider").removeClass("hide");
+                }
+            });
+            $("#sliderClose").click(function () {
+                if (app.slider.visible == true) {
+                    console.dir("hide");
+
+                    app.slider.visible = false;
+                    $(".slider").removeClass("show");
+                    $(".slider").addClass("hide");
+
+                }
+            });
+        });
+
+        $(document).on(DataManager.events.ajaxLoadStart.name, function () {
+            $("#loader").removeClass("hidden");
+        });
+
+        $(document).on(DataManager.events.ajaxLoadReady.name, function () {
+            $("#loader").addClass("hidden");
+        });
+
+
+    </script>
+    <div class="slider">
+        <ul>
+            <li><a href="/#paymentList">Payments</a></li>
+            <li><a href="/#temp">Temp</a></li>
+        </ul>
+        <div id="sliderClose">Close</div>
+    </div>
+    <div class="app">
+        <header>
+            <div class="drawer">
+
+
+            </div>
+            <div id="loader" class="hidden"></div>
+        </header>
+
+        <content>
+
+
+            <div class="content-view">
+
+                <div id="contentView">
+
+
+
+
+                </div>
+            </div>
+        </content>
+    </div>
+
+
+
+</body>
 </html>
