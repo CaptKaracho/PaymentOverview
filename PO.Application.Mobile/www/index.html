@@ -15,26 +15,82 @@
     <script src="assets/lib/underscore.js"></script>
     <script src="assets/lib/backbone.js"></script>
     <script src="assets/lib/dataManager.js"></script>
+    <script src="assets/lib/dataHandler.js"></script>
     <script src="assets/lib/helper.js"></script>
 
     <link href="assets/css/app.css" rel="stylesheet" />
 
     <script src="app/Application.js"></script>
-    <script src="app/View/Payments.js"></script>
+    <script src="app/view/Payments.js"></script>
     <script src="app/model/Payment.js"></script>
     <script type="text/template" id="details">
-        <div class="data-list}"
-            <% _.each(collection, function(item) { %>
-            <li>
-                <%= item.Description %> <%= item.PaymentDate%>
-            </li>
-            <%})%>
+        <div class="data-list">
+            <ul>
+                <% _.each(collection, function(item) { %>
+                <li class="data-list-item">
+                    <ul>
+                        <li>
+                            <%= item.PaymentDate%>
+                        </li>
+                        <li>
+                            <%= item.PaymentGroup%> <%= item.PaymentType%>
+                        </li>
+                        <li>
+                            <%= item.Description %> <%= item.Price%>
+                        </li>
+                    </ul>
+                </li>
+                <%})%>
+            </ul>
+
         </div>
     </script>
+    <script type="text/template" id="newPayment">
+        <span>Make your new pamynet</span>
+        <div class="">
+            <ul>
+                <li>
+                    <span>Description</span>  <input type="text" id="txtDescription" />
+                </li>
+                <li>
+                    <span>Price</span><input type="number" id="txtnPrice" />
+                </li>
+                <li>
+                    <span>Group</span>
+                    <select id="slctGroup">
+                        <option value="1">Gruppe1</option>
+                    </select>
+                </li>
+                <li>
+                    <span>Type</span>
+                    <select id="slctType">
+                        <option value="1">Typ1</option>
+                    </select>
+                </li>
+            </ul>
+            <input type="button" id="btnAddPayment" onclick="addPayment();" />
+        </div>
+        <script type="text/javascript">
+
+            function addPayment() {
+                //DataHandler.addPayment({
+                //    description: $("#txtDescription")[0].value,
+                //    price: $("#txtnPrice")[0].value,
+                //    paymentTypeId: $("#slctType").val(),
+                //    paymentGroupId: $("#slctGroup").val()
+                //}, function (t) {
+                //    console.dir(t);
+                //});
+                alert("OK");
+            }
+        </script>
+    </script>
+
 
     <script type="text/javascript">
         var app;
         $(document).ready(function () {
+            console.dir(DataHandler);
             app = new Application();
 
 
@@ -75,36 +131,23 @@
     </script>
     <div class="slider">
         <ul>
-            <li><a href="/#paymentList">Payments</a></li>
-            <li><a href="/#temp">Temp</a></li>
+            <li><a href="#paymentList">Payments</a></li>
+            <li><a href="#temp">Temp</a></li>
         </ul>
         <div id="sliderClose">Close</div>
     </div>
     <div class="app">
         <header>
             <div class="drawer">
-
-
             </div>
             <div id="loader" class="hidden"></div>
         </header>
-
         <content>
-
-
             <div class="content-view">
-
                 <div id="contentView">
-
-
-
-
                 </div>
             </div>
         </content>
     </div>
-
-
-
 </body>
 </html>

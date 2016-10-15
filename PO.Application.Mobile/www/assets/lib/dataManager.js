@@ -121,7 +121,7 @@ var DataManager = (function (document) {
             }, intervall);
         }
         else {
-
+            //event alll Ready
             callback();
 
         }
@@ -129,7 +129,7 @@ var DataManager = (function (document) {
     dataManager.onDataLoadReady = function (callback) {
 
         queueRound(callback, 500);
-
+        
     }
 
     dataManager.isDataLoadReady = function () {

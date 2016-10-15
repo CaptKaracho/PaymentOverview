@@ -19,7 +19,7 @@ ul {
 
 header {
     z-index: 1000;
-    position: absolute;
+    position: static;
     height: 40px;
     width: 100%;
     background-color: #0094ff;
@@ -74,7 +74,7 @@ content {
 }
 
     .slider.show {
-        animation: slider-show 1s forwards;
+        animation: slider-show 0.75s forwards;
     }
 
 @-webkit-keyframes slider-hide {
@@ -88,7 +88,7 @@ content {
 }
 
 .slider.hide {
-    animation: slider-hide 1s forwards;
+    animation: slider-hide 0.75s forwards;
 }
 
 @-webkit-keyframes slider-show {
@@ -165,13 +165,8 @@ content {
         padding: 10px;
     }
 
-        .content-view .data-list li {
+        .content-view .data-list .data-list-item {
             border-bottom: 1px solid grey;
+            padding-bottom:10px;
             margin-bottom: 10px;
         }
-
-            .content-view .data-list li .list-element {
-                display: block;
-                margin-left: 10px;
-                margin-bottom: 10px;
-            }

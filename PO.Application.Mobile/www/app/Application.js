@@ -5,8 +5,9 @@
 
         render: function () {
             console.dir("render container");
+            
             //console.dir(this.$el);
-            this.$el.append(this.childView.$el);
+            this.$el.html(this.childView.$el);
             return this;
         }
     });
@@ -16,9 +17,9 @@
         container: null,
         view: null,
         routes: {
-            '': 'paymentList',
+            '':'paymentList',
             'paymentList': 'paymentList',
-            'temp':'paymentList'
+            'temp':'paymentNew'
         },
 
         initialize: function () {
@@ -28,6 +29,13 @@
         paymentList: function () {
 
             this.view = new PaymentListView();
+            this.container.childView = this.view;
+            this.container.render();
+        },
+        paymentNew: function () {
+
+            
+            this.view = new PaymentNew();
             this.container.childView = this.view;
             this.container.render();
         }
