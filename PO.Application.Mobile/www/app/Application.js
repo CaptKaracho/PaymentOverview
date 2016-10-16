@@ -17,9 +17,9 @@
         container: null,
         view: null,
         routes: {
-            '':'paymentList',
+            '':'paymentNew',
             'paymentList': 'paymentList',
-            'temp':'paymentNew'
+            'paymentAdd': 'paymentNew'
         },
 
         initialize: function () {

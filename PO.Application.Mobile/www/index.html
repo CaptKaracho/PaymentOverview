@@ -46,9 +46,8 @@
         </div>
     </script>
     <script type="text/template" id="newPayment">
-        <span>Make your new pamynet</span>
         <div class="">
-            <ul>
+            <ul class="data-new">
                 <li>
                     <span>Description</span>  <input type="text" id="txtDescription" />
                 </li>
@@ -68,20 +67,22 @@
                     </select>
                 </li>
             </ul>
-            <input type="button" id="btnAddPayment" onclick="addPayment();" />
+            <br />
+            <div onclick="addPayment();" class="button"><span>Add New</span></div>
         </div>
         <script type="text/javascript">
 
             function addPayment() {
-                //DataHandler.addPayment({
-                //    description: $("#txtDescription")[0].value,
-                //    price: $("#txtnPrice")[0].value,
-                //    paymentTypeId: $("#slctType").val(),
-                //    paymentGroupId: $("#slctGroup").val()
-                //}, function (t) {
-                //    console.dir(t);
-                //});
-                alert("OK");
+                console.dir($("#txtnPrice"));
+                DataHandler.addPayment({
+                    description: $("#txtDescription")[0].value,
+                    price: $("#txtnPrice")[0].valueAsNumber,
+                    addonText:'',
+                    typeId: $("#slctType").val(),
+                    groupId: $("#slctGroup").val()
+                }, function (t) {
+                    console.dir(t);
+                });
             }
         </script>
     </script>
@@ -132,13 +133,16 @@
     <div class="slider">
         <ul>
             <li><a href="#paymentList">Payments</a></li>
-            <li><a href="#temp">Temp</a></li>
+            <li><a href="#paymentAdd">AddPayment</a></li>
         </ul>
         <div id="sliderClose">Close</div>
     </div>
     <div class="app">
         <header>
             <div class="drawer">
+            </div>
+            <div class="title">
+                PaymentOverview
             </div>
             <div id="loader" class="hidden"></div>
         </header>

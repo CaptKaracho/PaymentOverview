@@ -26,7 +26,13 @@
         DataManager.settings.action = "AddPaymentSingle";
         DataManager.settings.controller = "Payment";
         DataManager.settings.type = "POST";
-        DataManager.dataParameter={Description:data.description,Price:0,PaymentTypeId:1,AddonText:'Default',PaymentGroupId:1};
+        DataManager.dataParameter = {
+            Description: data.description,
+            Price: data.price,
+            PaymentTypeId: data.typeId,
+            AddonText: data.addonText,
+            PaymentGroupId: data.groupId
+        };
         DataManager.callback = callback;
         DataManager.callData();
 

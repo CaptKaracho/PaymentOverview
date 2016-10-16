@@ -19,7 +19,7 @@ ul {
 
 header {
     z-index: 1000;
-    position: static;
+    position: fixed;
     height: 40px;
     width: 100%;
     background-color: #0094ff;
@@ -27,18 +27,6 @@ header {
     left: 0px;
 }
 
-.slider {
-    color: white !important;
-}
-
-    .slider ul li {
-        margin: 20px;
-    }
-
-        .slider ul li a {
-            color: white;
-            text-decoration: none;
-        }
 
 content {
     z-index: 500;
@@ -52,7 +40,7 @@ content {
     visibility: hidden;
 }
 
-.drawer {
+header .drawer {
     top: 3px;
     left: 3px;
     position: absolute;
@@ -62,6 +50,15 @@ content {
     cursor: pointer;
     z-index: 500;
 }
+header .title{
+    position:absolute;
+    top:5px;
+    left:100px;
+    font-size:22px;
+    color:white;
+}
+
+
 
 .slider {
     position: absolute;
@@ -71,10 +68,20 @@ content {
     top: 0px;
     left: -300px;
     z-index: 2000;
+    color: white !important;
 }
 
+    .slider ul li {
+        margin: 20px;
+    }
+
+        .slider ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
     .slider.show {
-        animation: slider-show 0.75s forwards;
+        animation: slider-show 1s forwards;
     }
 
 @-webkit-keyframes slider-hide {
@@ -88,7 +95,7 @@ content {
 }
 
 .slider.hide {
-    animation: slider-hide 0.75s forwards;
+    animation: slider-hide 1s forwards;
 }
 
 @-webkit-keyframes slider-show {
@@ -167,6 +174,27 @@ content {
 
         .content-view .data-list .data-list-item {
             border-bottom: 1px solid grey;
-            padding-bottom:10px;
+            padding-bottom: 10px;
             margin-bottom: 10px;
+        }
+
+    .content-view .data-new li {
+        margin-bottom: 10px;
+    }
+
+        .content-view .data-new li span {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: grey;
+            display: block;
+            width: 100px;
+        }
+
+        .content-view .data-new li input,
+        .content-view .data-new li select {
+            display: block;
+            border: 1px solid rgba(154, 153, 153, 0.70);
+            height: 40px;
+            width: 100%;
+            border-radius: 10px;
         }

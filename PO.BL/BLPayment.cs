@@ -108,11 +108,7 @@ namespace PO.BL
                         .PAYMENT_DATA_SINGLE
                         .Include(i => i.PAYMENT_TYPE)
                         .Include(i => i.PAYMENT_GROUP)
-                        //.Where(w => ApplicationUser
-                        //                .Groups
-                        //                .Select(s => s.PAYMENT_GROUP_ID).ToList()
-                        //                .Contains(w.PAYMENT_GROUP_ID.GetValueOrDefault(0)))
-                        
+                        .OrderByDescending(o => o.DATE)
                         .ToList()
                         .Select(s => new BL.BLEntties.PaymentDataSingle(s)).ToList();
 
