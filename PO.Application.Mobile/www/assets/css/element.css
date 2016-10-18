@@ -1,0 +1,91 @@
+﻿
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.nav-button {
+    height: 40px;
+    min-width: 70px;
+    display: block;
+    position: relative;
+    background-color: white;
+    border: 2px solid #a8a8a8;
+}
+
+    .nav-button a {
+        text-align: center;
+        vertical-align: bottom;
+        height: 100%;
+        width: 100%;
+        display: block;
+        text-decoration: none;
+        color: #a8a8a8;
+        font-weight: bold;
+    }
+
+        .nav-button a span {
+            display:block;
+            margin-top:10px;
+        }
+
+    .nav-button.selected {
+        background-color: #a8a8a8;
+    }
+
+        .nav-button.selected a {
+            color: white;
+        }
+
+.button {
+    display: block;
+    height: 50px;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 2px 1px grey;
+}
+
+    .button.add {
+        /*background-color: #075fcb;*/
+        background-color: #24b425;
+    }
+
+        .button.add > span {
+            padding-top: 10px !important;
+            font-size: 23px;
+            display: block;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+    .button .button-large {
+        width: 100%;
+    }
+
+    .button .button-small {
+        width: 25%;
+    }
+
+input, select {
+    display: block;
+    border: 1px solid rgba(154, 153, 153, 0.70);
+    height: 40px;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    background-color: white !important;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+input {
+    padding-left: 15px;
+    padding-right: 15px;
+}

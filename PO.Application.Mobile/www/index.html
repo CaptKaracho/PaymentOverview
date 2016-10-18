@@ -19,11 +19,31 @@
     <script src="assets/lib/helper.js"></script>
 
     <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="assets/css/element.css" rel="stylesheet" />
 
     <script src="app/Application.js"></script>
     <script src="app/view/Payments.js"></script>
     <script src="app/model/Payment.js"></script>
     <script type="text/template" id="details">
+
+        <div style="margin-bottom:20px;text-align:center">
+            <ul class="list list-horizontal">
+                <li>
+                    <div class="nav-button selected">
+                        <a href="#paymentDay">
+                            <span>Daily</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-button">
+                        <a href="#paymentWeek">
+                            <span>Weekly</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="data-list">
             <ul>
                 <% _.each(collection, function(item) { %>
@@ -47,7 +67,13 @@
     </script>
     <script type="text/template" id="newPayment">
         <div class="">
-            <ul class="data-new">
+            <ul class="list data-new">
+                <li>
+                    <span>Type</span>
+                    <select id="slctType">
+                        <option value="1">Typ1</option>
+                    </select>
+                </li>
                 <li>
                     <span>Description</span>  <input type="text" id="txtDescription" />
                 </li>
@@ -60,24 +86,17 @@
                         <option value="1">Gruppe1</option>
                     </select>
                 </li>
-                <li>
-                    <span>Type</span>
-                    <select id="slctType">
-                        <option value="1">Typ1</option>
-                    </select>
-                </li>
             </ul>
             <br />
-            <div onclick="addPayment();" class="button"><span>Add New</span></div>
+            <div onclick="addPayment();" class="button add"><span>Add New</span></div>
         </div>
         <script type="text/javascript">
 
             function addPayment() {
-                console.dir($("#txtnPrice"));
                 DataHandler.addPayment({
                     description: $("#txtDescription")[0].value,
                     price: $("#txtnPrice")[0].valueAsNumber,
-                    addonText:'',
+                    addonText: '',
                     typeId: $("#slctType").val(),
                     groupId: $("#slctGroup").val()
                 }, function (t) {
@@ -90,45 +109,25 @@
 
     <script type="text/javascript">
         var app;
+
         $(document).ready(function () {
-            console.dir(DataHandler);
             app = new Application();
-
-
-            Application.prototype.slider = { visible: false };
-
-
+            app.sliderManager.slider = ".slider";
 
             $(".drawer").click(function () {
-                console.dir(app.slider.visible);
-                if (app.slider.visible == false) {
-                    console.dir("show");
-                    app.slider.visible = true;
-                    $(".slider").addClass("show");
-                    $(".slider").removeClass("hide");
-                }
+                app.sliderManager.showSlider();
             });
             $("#sliderClose").click(function () {
-                if (app.slider.visible == true) {
-                    console.dir("hide");
-
-                    app.slider.visible = false;
-                    $(".slider").removeClass("show");
-                    $(".slider").addClass("hide");
-
-                }
+                app.sliderManager.hideSlider();
             });
         });
 
         $(document).on(DataManager.events.ajaxLoadStart.name, function () {
             $("#loader").removeClass("hidden");
         });
-
         $(document).on(DataManager.events.ajaxLoadReady.name, function () {
             $("#loader").addClass("hidden");
         });
-
-
     </script>
     <div class="slider">
         <ul>
@@ -137,12 +136,20 @@
         </ul>
         <div id="sliderClose">Close</div>
     </div>
+
     <div class="app">
         <header>
             <div class="drawer">
+                <svg width="43" height="43">
+                    <rect x="1" y="1" width="40" height="40" rx="3" ry="3" color="blue" fill="none" stroke="white" stroke-width="2" />
+                    <line x1="7" y1="13" x2="35" y2="13" stroke="white" stroke-width="3" stroke-linecap="round"></line>
+                    <line x1="7" y1="21" x2="35" y2="21" stroke="white" stroke-width="3" stroke-linecap="round"></line>
+                    <line x1="7" y1="29" x2="35" y2="29" stroke="white" stroke-width="3" stroke-linecap="round"></line>
+
+                </svg>
             </div>
             <div class="title">
-                PaymentOverview
+                <span class="pt1">Pay</span><span class="pt2">ment</span><span class="pt1">Ov</span><span class="pt2">erview</span>
             </div>
             <div id="loader" class="hidden"></div>
         </header>
