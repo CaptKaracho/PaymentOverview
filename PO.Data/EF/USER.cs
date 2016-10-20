@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PO.Data
+namespace PO.Data.EF
 {
     using System;
     using System.Collections.Generic;

@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PO.Data
+namespace PO.Data.EF
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class DataContext : DbContext
+    public partial class PODataContext : DbContext
     {
-        public DataContext()
-            : base("name=DataContext")
+        public PODataContext()
+            : base("name=PODataContext")
         {
         }
     
@@ -32,5 +34,14 @@ namespace PO.Data
         public virtual DbSet<ROLE> ROLE { get; set; }
         public virtual DbSet<USER> USER { get; set; }
         public virtual DbSet<USER_ROLE_PAYMENT_GROUP> USER_ROLE_PAYMENT_GROUP { get; set; }
+    
+        public virtual ObjectResult<Payment_GetSingle_Result> Payment_GetSingle(Nullable<int> granularity)
+        {
+            var granularityParameter = granularity.HasValue ?
+                new ObjectParameter("Granularity", granularity) :
+                new ObjectParameter("Granularity", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Payment_GetSingle_Result>("Payment_GetSingle", granularityParameter);
+        }
     }
 }

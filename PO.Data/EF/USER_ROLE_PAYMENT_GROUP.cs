@@ -7,23 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PO.Data
+namespace PO.Data.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PAYMENT_DATA_RECURRENT
+    public partial class USER_ROLE_PAYMENT_GROUP
     {
         public int ID { get; set; }
-        public string DESCRIPTION { get; set; }
-        public decimal PRICE { get; set; }
-        public string DUE_CODE { get; set; }
+        public Nullable<int> ROLE_ID { get; set; }
         public Nullable<int> PAYMENT_GROUP_ID { get; set; }
-        public Nullable<int> PAYMENT_TYPE_ID { get; set; }
-        public Nullable<System.DateTime> INSERT_AT { get; set; }
-        public string INSERT_BY { get; set; }
+        public Nullable<int> USER_ID { get; set; }
     
         public virtual PAYMENT_GROUP PAYMENT_GROUP { get; set; }
-        public virtual PAYMENT_TYPE PAYMENT_TYPE { get; set; }
+        public virtual ROLE ROLE { get; set; }
+        public virtual USER USER { get; set; }
     }
 }

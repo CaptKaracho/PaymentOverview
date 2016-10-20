@@ -7,26 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PO.Data
+namespace PO.Data.EF
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PAYMENT_TYPE
+    public partial class PAYMENT_GROUP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PAYMENT_TYPE()
+        public PAYMENT_GROUP()
         {
             this.PAYMENT_DATA_RECURRENT = new HashSet<PAYMENT_DATA_RECURRENT>();
             this.PAYMENT_DATA_SINGLE = new HashSet<PAYMENT_DATA_SINGLE>();
+            this.USER_ROLE_PAYMENT_GROUP = new HashSet<USER_ROLE_PAYMENT_GROUP>();
         }
     
-        public int PAYMENT_TYPE_ID { get; set; }
+        public int PAYMENT_GROUP_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DATA_RECURRENT> PAYMENT_DATA_RECURRENT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PAYMENT_DATA_SINGLE> PAYMENT_DATA_SINGLE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USER_ROLE_PAYMENT_GROUP> USER_ROLE_PAYMENT_GROUP { get; set; }
     }
 }

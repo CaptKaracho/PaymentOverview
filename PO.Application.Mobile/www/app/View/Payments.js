@@ -24,12 +24,17 @@ var PaymentListView = Backbone.View.extend({
     }
 });
 var PaymentNew = Backbone.View.extend({
+    groups: [],
+    types: [],
     myTemplate: null,
     initialize: function () {
         this.myTemplate = _.template($("#newPayment").html());
+        this.groups = DataStorage.groups;
+        this.types = DataStorage.types;
         this.render();
     },
     render: function () {
-        this.$el.html(this.myTemplate());
+        console.dir(this.groups);
+        this.$el.html(this.myTemplate({ groups: this.groups, types: this.types }));
     }
 });

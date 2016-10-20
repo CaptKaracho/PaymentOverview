@@ -1,4 +1,6 @@
-﻿var SliderManager = (function () {
+﻿
+
+var SliderManager = (function () {
     var manager = {
         slider: "",
         visible: false,
@@ -47,10 +49,11 @@ var Application = function () {
         container: null,
         view: null,
         routes: {
-            '': 'paymentList',
-            'paymentList': 'paymentList',
-            'paymentDay': function () { alert("Daily"); },
-            'paymentWeek': function () { alert("weekly"); },
+            '': 'preLoad',
+            'paymentList': 'paymentToday',
+            'paymentToday': 'paymentToday',
+            'paymentWeek': 'paymentWeek',
+            'paymentMonth': 'paymentMonth',
             'paymentAdd': 'paymentNew'
         },
 
@@ -58,9 +61,52 @@ var Application = function () {
             this.container = new ContainerView();
         },
 
-        paymentList: function () {
+        preLoad: function () {
             var that = this;
-            DataHandler.getPayment(function (t) {
+            this.view = new LoadView();
+            this.container.childView = this.view;
+            this.container.render();
+
+            DataHandler.getResourceDataGroups(function (t) {
+                DataStorage.groups = t;
+            });
+            DataHandler.getResourceDataTypes(function (t) {
+                DataStorage.types = t;
+            });
+
+            DataHandler.onReady(function () {
+                that.view = new PaymentNew();
+
+                that.container.childView = that.view;
+                setTimeout(function () {
+                    that.container.render();
+                }, 3000);
+            });
+
+
+
+        },
+        paymentToday: function () {
+            var that = this;
+            DataHandler.getPayment(1, function (t) {
+                console.dir(t);
+                that.view = new PaymentListView({ collection: new PaymentList(t) });
+                that.container.childView = that.view;
+                that.container.render();
+            });
+        },
+        paymentWeek: function () {
+            var that = this;
+            DataHandler.getPayment(2, function (t) {
+                console.dir(t);
+                that.view = new PaymentListView({ collection: new PaymentList(t) });
+                that.container.childView = that.view;
+                that.container.render();
+            });
+        },
+        paymentMonth: function () {
+            var that = this;
+            DataHandler.getPayment(3, function (t) {
                 console.dir(t);
                 that.view = new PaymentListView({ collection: new PaymentList(t) });
                 that.container.childView = that.view;
@@ -68,7 +114,7 @@ var Application = function () {
             });
         },
         paymentNew: function () {
-            this.view = new PaymentNew();
+            this.view = new PaymentNew({ groups: DataStorage.Groups });
             this.container.childView = this.view;
             this.container.render();
         }

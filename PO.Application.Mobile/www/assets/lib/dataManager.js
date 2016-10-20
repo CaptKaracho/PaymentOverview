@@ -73,6 +73,7 @@ var DataManager = (function (document) {
         if (this.settings.id != undefined && this.settings.id != "")
             url += "/" + this.settings.id;
 
+
         $.ajax({
             type: this.settings.type,
             url: url,
@@ -128,8 +129,8 @@ var DataManager = (function (document) {
     }
     dataManager.onDataLoadReady = function (callback) {
 
-        queueRound(callback, 500);
-        
+        queueRound(callback, 10);
+
     }
 
     dataManager.isDataLoadReady = function () {

@@ -71,55 +71,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enum.cs" />
-    <Compile Include="Framework\Helper.cs" />
-    <Compile Include="Model.Context.cs">
+    <Compile Include="BL\BLBase.cs" />
+    <Compile Include="BL\BLEntties\PaymentData.cs" />
+    <Compile Include="BL\BLEntties\ResourceData.cs" />
+    <Compile Include="BL\BLEntties\ReturnObjectcs.cs" />
+    <Compile Include="BL\BLEntties\UserData.cs" />
+    <Compile Include="BL\BLPayment.cs" />
+    <Compile Include="BL\BLUser.cs" />
+    <Compile Include="EF\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs">
+    <Compile Include="EF\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.Designer.cs">
+    <Compile Include="EF\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PAYMENT_DATA_RECURRENT.cs">
+    <Compile Include="EF\PAYMENT_DATA_RECURRENT.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PAYMENT_DATA_SINGLE.cs">
+    <Compile Include="EF\PAYMENT_DATA_SINGLE.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PAYMENT_GROUP.cs">
+    <Compile Include="EF\Payment_GetSingle_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PAYMENT_TYPE.cs">
+    <Compile Include="EF\PAYMENT_GROUP.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\PAYMENT_TYPE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ROLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\USER.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\USER_ROLE_PAYMENT_GROUP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enum.cs" />
+    <Compile Include="Framework\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryBase.cs" />
-    <Compile Include="RepositoryGenericSimple.cs" />
-    <Compile Include="ROLE.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="USER_ROLE_PAYMENT_GROUP.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\RepositoryGenericSimple.cs" />
+    <Compile Include="SQL\DBAccess.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Model.edmx">
+    <EntityDeploy Include="EF\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model.edmx.diagram">
+    <None Include="EF\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -131,12 +142,12 @@
   <ItemGroup>
     <Content Include="Dll\EntityFramework.dll" />
     <Content Include="Dll\EntityFramework.SqlServer.dll" />
-    <Content Include="Model.Context.tt">
+    <Content Include="EF\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model.tt">
+    <Content Include="EF\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>

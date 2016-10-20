@@ -17,32 +17,80 @@
     <script src="assets/lib/dataManager.js"></script>
     <script src="assets/lib/dataHandler.js"></script>
     <script src="assets/lib/helper.js"></script>
+    <script src="assets/lib/localStorage.js"></script>
 
     <link href="assets/css/app.css" rel="stylesheet" />
     <link href="assets/css/element.css" rel="stylesheet" />
 
     <script src="app/Application.js"></script>
     <script src="app/view/Payments.js"></script>
+    <script src="app/view/Load.js"></script>
+
     <script src="app/model/Payment.js"></script>
+
+    <script type="text/template" id="preLoad">
+
+
+
+        <div id="preLoader" style="height:200px;width:100%">
+            <svg expanded="true" height="100%" width="100%">
+                <circle class="innerCircle" cx="50%" cy="50%" r="0%" fill="none" stroke="#000000" stroke-width=41%">
+                    <animate attributeType="SVG" attributeName="r" begin="0s" dur="3s" repeatCount="indefinite" from="0%" to="25%" />
+                    <animate attributeType="CSS" attributeName="stroke-width" begin="0s" dur="3s" repeatCount="indefinite" from="4%" to="0%" />
+                    <animate attributeType="CSS" attributeName="opacity" begin="0s" dur="3s" repeatCount="indefinite" from="1" to="0" />
+                </circle>
+
+
+                <circle class="innerCircle" cx="50%" cy="50%" r="0%" fill="none" stroke="#000000" stroke-width="2%">
+                    <animate attributeType="SVG" attributeName="r" begin="1.5s" dur="4s" repeatCount="indefinite" from="0%" to="50%" />
+                    <animate attributeType="CSS" attributeName="stroke-width" begin="1.5s" dur="4s" repeatCount="indefinite" from="2%" to="0%" />
+                    <animate attributeType="CSS" attributeName="opacity" begin="1.5s" dur="4s" repeatCount="indefinite" from="1" to="0" />
+                </circle>
+
+
+                <!--<circle id="circle1" class="innerCircle" cx="50%" cy="50%" r="2%" fill="none" stroke="#000000" stroke-width="5%"></circle>
+                <circle id="circle2" class="innerCircle" cx="50%" cy="50%" r="%" fill="none" stroke="#000000" stroke-width="5%"></circle>
+
+                <animate xlink:href="#circle1" attributeType="SVG" attributeName="r" begin="0s" dur="2s" repeatCount="indefinite" from="5%" to="25%" />
+                <animate xlink:href="#circle1" attributeType="CSS" attributeName="stroke-width" begin="0s" dur="2s" repeatCount="indefinite" from="3%" to="0%" />
+                <animate xlink:href="#circle1" attributeType="CSS" attributeName="opacity" begin="0s" dur="2s" repeatCount="indefinite" from="1" to="0" />-->
+
+            </svg>
+            <span>
+                Loading ....
+            </span>
+        </div>
+
+    </script>
+
+
     <script type="text/template" id="details">
 
         <div style="margin-bottom:20px;text-align:center">
             <ul class="list list-horizontal">
                 <li>
                     <div class="nav-button selected">
-                        <a href="#paymentDay">
-                            <span>Daily</span>
+                        <a href="#paymentToday">
+                            <span>Today</span>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div class="nav-button">
                         <a href="#paymentWeek">
-                            <span>Weekly</span>
+                            <span>Week</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-button">
+                        <a href="#paymentMonth">
+                            <span>Month</span>
                         </a>
                     </div>
                 </li>
             </ul>
+
         </div>
         <div class="data-list">
             <ul>
@@ -71,7 +119,9 @@
                 <li>
                     <span>Type</span>
                     <select id="slctType">
-                        <option value="1">Typ1</option>
+                        <% _.each(types, function(item) { %>
+                        <option value="<%= item.Id %>"><%= item.Description %></option>
+                        <%})%>
                     </select>
                 </li>
                 <li>
@@ -83,7 +133,9 @@
                 <li>
                     <span>Group</span>
                     <select id="slctGroup">
-                        <option value="1">Gruppe1</option>
+                        <% _.each(groups, function(item) { %>
+                        <option value="<%= item.Id %>"><%= item.Description %></option>
+                        <%})%>
                     </select>
                 </li>
             </ul>
@@ -109,8 +161,21 @@
 
     <script type="text/javascript">
         var app;
+        //$(".nav-button").click(function () {
+        //    console.dir("clicked nav ^button");
+        //    $(".nav-button").removeClass("selected");
+        //    $(this).parent.addClass("selected");
+        //});
 
+
+        $(".nav-button").click(function () {
+
+            alert("click");
+        });
         $(document).ready(function () {
+
+
+
             app = new Application();
             app.sliderManager.slider = ".slider";
 
@@ -131,7 +196,7 @@
     </script>
     <div class="slider">
         <ul>
-            <li><a href="#paymentList">Payments</a></li>
+            <li><a href="#paymentToday">Payments</a></li>
             <li><a href="#paymentAdd">AddPayment</a></li>
         </ul>
         <div id="sliderClose">Close</div>

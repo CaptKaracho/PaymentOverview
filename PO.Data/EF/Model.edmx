@@ -175,6 +175,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Payment_GetSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Granularity" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="PAYMENT_OVERVIEWModelStoreContainer">
           <EntitySet Name="PAYMENT_DATA_RECURRENT" EntityType="Self.PAYMENT_DATA_RECURRENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Self.PAYMENT_DATA_SINGLE" Schema="dbo" store:Type="Tables" />
@@ -407,7 +410,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PODataContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PAYMENT_DATA_RECURRENT" EntityType="Self.PAYMENT_DATA_RECURRENT" />
           <EntitySet Name="PAYMENT_DATA_SINGLE" EntityType="Self.PAYMENT_DATA_SINGLE" />
           <EntitySet Name="PAYMENT_GROUP" EntityType="Self.PAYMENT_GROUP" />
@@ -447,13 +450,25 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="USER_ROLE_PAYMENT_GROUP" EntitySet="USER_ROLE_PAYMENT_GROUP" />
           </AssociationSet>
+          <FunctionImport Name="Payment_GetSingle" ReturnType="Collection(PAYMENT_OVERVIEWModel.Payment_GetSingle_Result)">
+            <Parameter Name="Granularity" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Payment_GetSingle_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="DESCRIPTION" Nullable="true" MaxLength="250" />
+          <Property Type="Decimal" Name="PRICE" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="DATE" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ADDON_TEXT" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="PAYMENT_GROUP_ID" Nullable="true" />
+          <Property Type="Int32" Name="PAYMENT_TYPE_ID" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PAYMENT_OVERVIEWModelStoreContainer" CdmEntityContainer="DataContext">
+        <EntityContainerMapping StorageEntityContainer="PAYMENT_OVERVIEWModelStoreContainer" CdmEntityContainer="PODataContext">
           <EntitySetMapping Name="PAYMENT_DATA_RECURRENT">
             <EntityTypeMapping TypeName="PAYMENT_OVERVIEWModel.PAYMENT_DATA_RECURRENT">
               <MappingFragment StoreEntitySet="PAYMENT_DATA_RECURRENT">
@@ -535,6 +550,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Payment_GetSingle" FunctionName="PAYMENT_OVERVIEWModel.Store.Payment_GetSingle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PAYMENT_OVERVIEWModel.Payment_GetSingle_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="ADDON_TEXT" ColumnName="ADDON_TEXT" />
+                <ScalarProperty Name="PAYMENT_GROUP_ID" ColumnName="PAYMENT_GROUP_ID" />
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

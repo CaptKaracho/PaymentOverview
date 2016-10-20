@@ -54,17 +54,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PO.BL\PO.BL.csproj">
-      <Project>{2206b37f-16d2-4988-b354-a1ef828ef520}</Project>
-      <Name>PO.BL</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\PO.Data\PO.Data.csproj">
       <Project>{04f6e98f-7d4a-44c3-8b13-45e52ec3363c}</Project>
       <Name>PO.Data</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

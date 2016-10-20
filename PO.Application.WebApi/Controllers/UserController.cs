@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using PO.Data.BL;
+using PO.Data.BL.BLEntties;
 
 
 namespace PO.Application.WebApi.Controllers
@@ -11,7 +13,7 @@ namespace PO.Application.WebApi.Controllers
     public class UserController : BaseController
     {
         /// <summary>
-        
+
         /// </summary>
         /// <returns></returns>
         [Route("Login")]
@@ -19,9 +21,9 @@ namespace PO.Application.WebApi.Controllers
         public IHttpActionResult Login(string Username, string Password)
         {
 
-            using (BL.BLUser _Proxy = new BL.BLUser())
+            using (BLUser _Proxy = new BLUser())
             {
-                return Json( _Proxy.Login(Username, Password),JsonOption);
+                return Json(_Proxy.Login(Username, Password), JsonOption);
             }
         }
     }

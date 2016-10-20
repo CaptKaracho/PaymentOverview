@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PO.BL;
+using PO.Data.BL;
+using PO.Data.BL.BLEntties;
+using PO.Data;
+
 
 namespace PO.Debug.Console
 {
@@ -14,18 +17,28 @@ namespace PO.Debug.Console
 
 
 
-            
 
-            BLUser _BlUser = new BLUser();
-            var _DebugUser = _BlUser.Login("m.nagel", "1234");
 
-            BL.BLPayment _Bl = new BL.BLPayment(_DebugUser);
+            //BLUser _BlUser = new BLUser();
+            //var _DebugUser = _BlUser.Login("m.nagel", "1234");
 
-            var _Data = _Bl.GetPaymentDataSingle();
+            BLPayment _Bl = new BLPayment();
+
+            //_Bl.AddPaymentDataSingle(new PaymentDataSingle()
+            //{
+            //    Description = "neu",
+            //    PaymentTypeId = 2,
+            //    PaymentGroupId = 1,
+            //    PaymentDate = DateTime.Now,
+            //    Price = 234
+            //});
+            //var _D = _Bl.GetResourceData(0);
+
+            var _Data = _Bl.GetPaymentDataSingle(1);
 
             if (_Data.Count == 0)
             {
-                _Bl.AddPaymentDataSingle(new BL.BLEntties.PaymentDataSingle()
+                _Bl.AddPaymentDataSingle(new PaymentDataSingle()
                 {
                     PaymentDate = DateTime.Now,
                     Description = "Test Bezahlung",

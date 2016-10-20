@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.BL.BLEntties
+namespace PO.Data.BL.BLEntties
 {
    public class ReturnObject
     {

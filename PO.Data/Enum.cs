@@ -11,4 +11,11 @@ namespace PO.Data
         Full = 1,
         Read = 2
     }
+
+    public enum ResourceTyp
+    {
+        Unknow = 0,
+        Group = 1,
+        Type = 2
+    }
 }
